@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.default.css" id="theme-stylesheet">
+    
+    
+
+  </head>
+  <body>
+  
+    <div class="page login-page">
+      <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+          <div class="row">
+            <!-- Logo & Information Panel-->
+            <div class="col-lg-6">
+              <div class="info d-flex align-items-center">
+                <div class="content">
+                  <div class="logo">
+                    <h1>欢迎登录</h1>
+                  </div>
+                  <p style="margin-top: 20px;font-size:1.2em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;药房管理系统</p>
+                </div>
+              </div>
+            </div>
+            <!-- Form Panel    -->
+            <div class="col-lg-6 bg-white">
+              <div class="form d-flex align-items-center">
+                <div class="content">
+                  <div class="form-validate" id="loginFrom">
+                    <div class="form-group">
+                      <input id="login-username" type="text" name="userName" required data-msg="请输入用户名" placeholder="用户名" value="admin" class="input-material">
+                    </div>
+                    <div class="form-group">
+                      <input id="login-password" type="password" name="passWord" required data-msg="请输入密码" placeholder="密码" class="input-material">
+                    </div>
+                    <button id="login" type="submit" class="btn btn-primary">登录</button>
+                    <div style="margin-top: -40px;"> 
+                    	<!-- <input type="checkbox"  id="check1"/>&nbsp;<span>记住密码</span>
+                    	<input type="checkbox" id="check2"/>&nbsp;<span>自动登录</span> -->
+                    	<div class="custom-control custom-checkbox" style="float: right;">
+											    <input type="checkbox" class="custom-control-input" id="check2" >
+											    <label class="custom-control-label" for="check2">自动登录</label>
+											</div>
+											<div class="custom-control custom-checkbox " style="float: right;">
+											    <input type="checkbox" class="custom-control-input" id="check1" >
+											    <label class="custom-control-label" for="check1">记住密码&nbsp;&nbsp;</label>
+											</div> 
+                    </div>
+                  </div>
+                  <br />
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- JavaScript files-->
+    <script src="./static/jquery-3.3.1.js"></script>
+    <script src="./static/bootstrap-3.3.7/js/bootstrap.js"></script>
+   
+    
+    
+    <!-- Main File-->
+   
+  </body>
+  <script type="text/javascript">
+    
+    	$(function(){
+    		
+    		$("#login").click(function(){
+    			var userName=$("#login-username").val();
+    			var passWord=$("#login-password").val();
+    			$.post("http://localhost:8080/JavaWeb_Day3/login",{
+    				username:userName,
+    				password:passWord,
+    			},
+    			function(rString){
+    				console.log(rString)
+    				if(rString==null || rString==""|| rString=='undefined'){
+    					alert("用户或密码出错")				
+    					window.location.href="/JavaWeb_Day3/login.html";		
+    				}
+    				else{
+    					sessionStorage.setItem("user",rString)				
+    					window.location.href="/JavaWeb_Day3/index.html";
+    				}
+    				
+    					
+    				
+    				
+    				
+    			});
+
+    		})
+    		
+    	})
+    </script>
+</html>

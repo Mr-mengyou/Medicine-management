@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="./static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+		<!-- 当前页面用到的自定义样式 -->
+		<link href="./static/dashboard.css" rel="stylesheet">
+
+		<style type="text/css">
+			input::-ms-input-placeholder{
+        text-align: center;
+}
+input::-webkit-input-placeholder{
+        text-align: center;
+}
+			.table tbody tr td {
+	vertical-align: middle;
+  }
+		</style>
+	</head>
+
+	<body>
+	
+
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+					<a class="navbar-brand" href="#">药品管理系统</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a id="operatorer" href="/JavaWeb_Day3/login.html"></a></li>
+						<li><a href="/JavaWeb_Day3/login.html">注销</a></li>
+				        
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input class="form-control" placeholder="Search..." type="text">
+					</form>
+				</div>
+			</div>
+		</nav>
+		
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li id="transform1" class="active"><a href="/JavaWeb_Day3/index.html">&nbsp;&nbsp;&nbsp;药&nbsp;&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;管&nbsp;&nbsp;&nbsp;理
+					</a></li>
+					<li id="transform2"><a href="/JavaWeb_Day3/senddrug.html">&nbsp;&nbsp;&nbsp;发&nbsp;&nbsp;&nbsp;药&nbsp;&nbsp;&nbsp;管&nbsp;&nbsp;&nbsp;理</a></li>
+					<li id="transform3"><a href="/JavaWeb_Day3/backdrug.html">&nbsp;&nbsp;&nbsp;退&nbsp;&nbsp;&nbsp;药&nbsp;&nbsp;&nbsp;管&nbsp;&nbsp;&nbsp;理</a></li>
+
+					</ul>
+
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<h1 class="page-header">退药系统</h1>
+					
+
+					<!--面板 开始-->
+					<div class="panel panel-default">
+						<div class="panel-body">
+						<!--表格上面的那一行-->
+						<div class="row">
+							<div class="col-md-3">
+								<div class="input-group">
+									<input type="text" id="caseId" class="form-control"
+										placeholder="请输入病历号" name="helpId"
+										> <span
+										class="input-group-btn">
+										<button class="btn btn-info" type="submit" id="search">查询</button>
+									</span>
+								</div>
+								<!-- /input-group -->
+							</div>
+						</div>
+						<!--表格上面那一行 结束-->
+						<!--表格 开始-->
+						<div class="table-box">
+							<table class="table table-bordered table-striped" id="table">
+								<thead>
+									<tr>
+									<th scope="col" class="text-center">病历号</th>
+									<th scope="col" class="text-center">姓名</th>
+									<th scope="col" class="text-center">年龄</th>
+									<th scope="col" class="text-center">性别</th>
+									<th scope="col" class="text-center">科室</th>
+									<th scope="col" class="text-center">收票时间</th>
+									<th scope="col" class="text-center">状态</th>
+									<th scope="col" class="text-center">操作</th>
+									</tr>
+								</thead>
+								<tbody id="tuiyao">
+								
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <h5 class="modal-title" id="staticBackdropLabel">可退药清单</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-striped" id="table">
+							<thead>
+								<tr>
+								    <th scope="col" class="text-center"></th>
+									<th scope="col" class="text-center">病历号</th>
+									<th scope="col" class="text-center">药品名称</th>
+									<th scope="col" class="text-center">药品编码</th>
+									<th scope="col" class="text-center">药品数量</th>
+									<th scope="col" class="text-center">状态</th>
+										
+								</tr>
+							</thead>
+							<tbody id="druglist">
+							
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+					    <a type="button" class="btn btn-danger" id="back">退药</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="./static/jquery-3.3.1.js"></script>
+		<script src="./static/bootstrap-3.3.7/js/bootstrap.js"></script>
+		<script src="./static/bootstrap-3.3.7/js/backdrug.js"></script>
+	</body>
+	
+</html>
